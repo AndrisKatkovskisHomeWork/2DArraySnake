@@ -1,0 +1,79 @@
+public class MainForPlay {
+
+    static int number = 5;
+    static int rows = number;
+    static int columns = number;
+    static int counter = 1;
+
+    public static void main(String[] args) {
+
+        twoDArraySnake();
+    }
+
+    public static void twoDArraySnake() {
+
+        int[][] array = new int[rows][columns];
+
+//        printArray(array);
+//        System.out.println("***************");
+
+        for (int i = 0; i < rows / 2 + 1; i++) {
+
+            generateTopRow(rows, i, array);
+
+            generateRightColumn(columns, i, array);
+
+            generateLowerRow(rows, i, array);
+
+            generateLeftColumn(columns, i, array);
+
+        }
+        printArray(array);
+
+    }
+
+    public static void printArray(int[][] array) {
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                System.out.print(array[i][j] + "|\t");
+            }
+            System.out.println();
+        }
+    }
+
+    public static void generateTopRow(int rows, int i, int[][] array) {
+        for (int j = 0; j < rows - i; j++) {
+            if (array[i][j] == 0) {
+                array[i][j] = counter;
+                counter++;
+            }
+        }
+    }
+
+    public static void generateRightColumn (int columns, int i, int[][] array){
+        for (int k = 0; k < columns - i; k++) {
+            if (array[k][columns - 1 - i] == 0) {
+                array[k][columns - 1 - i] = counter;
+                counter++;
+            }
+        }
+    }
+
+    public static void generateLowerRow (int rows, int i, int[][] array) {
+        for (int m = rows - i - 1; m >= 0; m--) {
+            if (array[rows - 1 - i][m] == 0) {
+                array[rows - 1 - i][m] = counter;
+                counter++;
+            }
+        }
+    }
+
+    public static void generateLeftColumn (int columns, int i, int[][] array) {
+        for (int b = columns - i - 1; b >= 0; b--) {
+            if (array[b][i] == 0) {
+                array[b][i] = counter;
+                counter++;
+            }
+        }
+    }
+}
